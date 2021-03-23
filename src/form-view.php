@@ -43,7 +43,9 @@
             <?php echo $erreurZipcode ?>
     <?php } ?>
     
-  
+    <?php if (!empty($time)) { ?>
+        <?php echo '<div class="alert alert-success" role="alert">Your order will arrive at '.$time.'  °.*\(^o^)/*.°</div>'; ?>
+    <?php } ?>
 
     <form method="post" action="index.php">
         <div class="form-row">

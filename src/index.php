@@ -18,7 +18,9 @@ session_start();
 @$erreurZipcode='';
 
 
-//print_r($_POST);
+$totalValue = 0;
+
+//print_r($_POST);//test
 
 function valid_data($data) {
     $data = trim($data); // trim () pour supprimer les espaces inutiles
@@ -71,35 +73,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 } 
 
-if(isset($_POST['send'])){
+if(empty($erreurEmail) && empty($erreurStreet) && empty($erreurStreetNumber) && empty($erreurZipcode)){
 
-    /*$email=$_POST['email'];
-    $street=$_POST['street'];
-    $streetNumber=$_POST['street'];
-    $city=$_POST['city'];
-    $zipcode=$_POST['zipcode'];*/
+    if(isset($_POST['order'])){
 
-    $localtime = localtime();
-    $minute = $localtime[1];
-    $heure = $localtime[2] + 1;
-    if($minute < 10){
-        $minute = 0 .$minute;
-    }
-    
+        /*$email=$_POST['email'];
+        $street=$_POST['street'];
+        $streetNumber=$_POST['street'];
+        $city=$_POST['city'];
+        $zipcode=$_POST['zipcode'];*/
 
-    if(isset($_POST['express_delivery'])){
-        $minute = $minute + 30;
+        $time ='';
+
+        $localtime = localtime();
+        $minute = $localtime[1];
+        $heure = $localtime[2] + 1;
+        if($minute < 10){
+            $minute = 0 .$minute;
+        }
         
 
-        if($minute >= 60){
-            $heure = $heure + 1;
-            $minute = $minute - 60;
+        if(isset($_POST['express_delivery'])){
+            $minute = $minute + 30;
+            
+
+            if($minute >= 60){
+                $heure = $heure + 1;
+                $minute = $minute - 60;
+            }
+            $time = $heure.'h'.$minute; //heure de livraison +30min
+            $totalValue = 5;//On ajoute 5euros aux prix total
+        
         }
-        $time = $heure.'h'.$minute; //heure de livraison +30min
-       
-    }
-    else{ 
-        $time = $heure + 1 .'h'.$minute;  //heure de livraison +1h
+        else{ 
+            $time = $heure + 1 .'h'.$minute;  //heure de livraison +1h
+            
+        }
         
     }
 }
@@ -139,7 +148,7 @@ $drinks = [
     ['name' => 'Ice-tea', 'price' => 2.2],
 ];
 
-$menuSwitch= $pizzas; // switch entre menu pizza et drinks
+$menuSwitch= $pizzas; // switch entre  le menu pizza et drinks
 if(isset($_GET['food'])){
     if($_GET['food'] == false){
         $menuSwitch = $drinks;
@@ -148,6 +157,14 @@ if(isset($_GET['food'])){
 
 
 
-$totalValue = 0;
+
+if(isset($_POST['products'])){
+    $products_select = $_POST['products'];
+    foreach($products_select AS $i => $choice){
+        $choice = $menuSwitch[$i]['price'];
+        $totalValue += $choice;
+    }
+    $_SESSION['total-price'] = $totalValue;
+}
 
 require 'form-view.php';
