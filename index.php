@@ -162,4 +162,4 @@ if(isset($_POST['products'])){
     $_SESSION['total-price'] = $totalValue;
 }
 
-require 'src/form-view.php';
+require 'form-view.php';
