@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if(empty($erreurEmail) && empty($erreurStreet) && empty($erreurStreetNumber) && empty($erreurZipcode)){
 
-    if(isset($_POST['order'])){
+    if(isset($_POST['order'])){ //click sur le bouton order
 
         /*$email=$_POST['email'];
         $street=$_POST['street'];
@@ -157,7 +157,7 @@ if(isset($_GET['food'])){
 
 
 
-
+//----------------Calcul du prix total-------------------------------
 if(isset($_POST['products'])){
     $products_select = $_POST['products'];
     foreach($products_select AS $i => $choice){
