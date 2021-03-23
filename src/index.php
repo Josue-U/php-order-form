@@ -77,13 +77,8 @@ if(empty($erreurEmail) && empty($erreurStreet) && empty($erreurStreetNumber) && 
 
     if(isset($_POST['order'])){ //click sur le bouton order
 
-        /*$email=$_POST['email'];
-        $street=$_POST['street'];
-        $streetNumber=$_POST['street'];
-        $city=$_POST['city'];
-        $zipcode=$_POST['zipcode'];*/
-
-        $time ='';
+    
+        $time =''; //temps de livraison
 
         $localtime = localtime();
         $minute = $localtime[1];
@@ -157,7 +152,7 @@ if(isset($_GET['food'])){
 
 
 
-//----------------Calcul du prix total-------------------------------
+//--------------------------Calcul du prix total-------------------------------
 if(isset($_POST['products'])){
     $products_select = $_POST['products'];
     foreach($products_select AS $i => $choice){
