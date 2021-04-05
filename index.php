@@ -40,33 +40,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if(!empty($_POST["street"])){
-        $street= $_POST["street"];//pour conserver la valeur valide entrée par l'utilisateur dans le form
+        $street= valid_data($_POST["street"]);//pour conserver la valeur valide entrée par l'utilisateur dans le form
     }
-    if(empty($_POST["street"]) || is_numeric($_POST["street"])){
+    if(empty($street) || is_numeric($street)){
         
         $erreurStreet = '<div class="alert alert-danger" role="alert">Empty street !</div>';
     }
 
     if(!empty($_POST["streetnumber"])){
-        $streetNumber=$_POST["streetnumber"];
+        $streetNumber= valid_data($_POST["streetnumber"]);
     }
-    if(empty($_POST["streetnumber"]) || !is_numeric($_POST["streetnumber"])){
+    if(empty($streetNumber) || !is_numeric($streetNumber)){
 
         $erreurStreetNumber ='<div class="alert alert-danger" role="alert">Invalid street Number !</div>';
     }
 
     if(!empty($_POST["city"])){
-        $city=$_POST["city"];
+        $city= valid_data($_POST["city"]);
     }
-    if(empty($_POST["city"]) || is_numeric($_POST["city"])){
+    if(empty($city) || is_numeric($city)){
 
         $erreurCity = '<div class="alert alert-danger" role="alert">Empty city !</div>';
     }
 
     if(!empty($_POST["zipcode"])){
-        $zipcode=$_POST["zipcode"];
+        $zipcode= valid_data($_POST["zipcode"]);
     }
-    if(empty($_POST["zipcode"]) || !is_numeric($_POST["zipcode"])){
+    if(empty($zipcode) || !is_numeric($zipcode)){
 
         $erreurZipcode = '<div class="alert alert-danger" role="alert">Invalid zipcode !</div>';
     }
