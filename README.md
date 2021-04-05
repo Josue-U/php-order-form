@@ -21,6 +21,6 @@ You will add a counter at the bottom of the page that shows the total amount of 
 You can start modifying index.php and form-view.php, they already contain some code to help you on your way.
 
 ## Lien du projet
-[lien](https://josue-u-php-order-form.herokuapp.com/)
+[lien](https://josue-u-php-order-form.herokuapp.com/) ;)
 
 _powered by Heruko :)_
